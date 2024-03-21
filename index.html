@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>剧场排座插件</title>
+	<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="src/seat.js"></script>
+
+</head>
+<body>
+	<div id="box">
+		<h1>大地影院 05 号厅座位表</h1>
+		<h4 class="text-danger text-left">Step1：把实际影厅没有座位的地方取消选中，然后保存座位图</h4>
+	</div>
+
+	<div class="container" style="margin-top: 10px;">
+
+		<div class="form-inline">
+			<button class="btn btn-success" id="save">保存座位图</button>
+		</div>
+
+	</div>
+
+	<h4>
+		GIT项目地址： <a href="https://git.oschina.net/blackfox/seats">https://git.oschina.net/blackfox/seats</a>
+	</h4>
+<script>
+	var seats = $.seats({
+		rows:20,
+		cols:30,
+		box:"#box",
+		"step":1
+	});
+	$('#save').on('click', function() {
+		console.log(seats.getSeats());
+		localStorage.setItem("seats", JSON.stringify(seats.getSeats()));
+		location.href = "step2.html";
+	});
+</script>
+</body>
+</html>
